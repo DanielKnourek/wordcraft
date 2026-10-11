@@ -123,8 +123,8 @@
 	Bibliography	Bibliografie
 	Binary assets added	Přidané binární soubory
 	Binary assets removed	Odebrané binární soubory
-	Blank	Prázdný
-	Blank (Three Columns)	Prázdný (tři sloupce)
+	Blank	Prázdné
+	Blank (Three Columns)	Prázdné (tři sloupce)
 	Blank document	Prázdný dokument
 	Blank Page	Prázdná stránka
 	Block\nAuthors	Blokovat\nautory
@@ -452,7 +452,7 @@
 	Format	Formát
 	Format Page Numbers	Formát číslování stránek
 	Format Page Numbers…	Formát číslování stránek…
-	Format Painter	Kopírovat formát
+	Format Painter	Štětec formátu
 	Format:	Formát:
 	Formatted Text	Formátovaný text
 	Formatting	Formátování
@@ -631,7 +631,7 @@
 	Link to Previous	Navázat na předchozí
 	Linked style (paragraph and character)	Propojený styl (odstavec a znak)
 	Links	Odkazy
-	Links and References	Odkazy
+	Links and References	Odkazy a reference
 	List Definition	Definice seznamu
 	Location: {path}	Umístění: {path}
 	lowercase	malá písmena
@@ -672,7 +672,7 @@
 	Move Past\nCitation	Přejít za\ncitaci
 	Multilevel List	Víceúrovňový seznam
 	Multiple Pages	Více stránek
-	Name (A–Z)	Název (A–Z)
+	Name (A–Z)	Jméno (A–Z)
 	Name of the file this document is saved as	Název souboru dokumentu
 	Name:	Název:
 	Narrow  0.5" all	Úzké  0,5" všude
@@ -876,7 +876,7 @@
 	Rectangle	Obdélník
 	Redo	Znovu
 	Reduce Hanging Indent	Zmenšit předsazení
-	References	Odkazy
+	References	Reference
 	Refresh	Obnovit
 	Registered	Registrovaná ochranná známka
 	Reject	Odmítnout
@@ -1194,7 +1194,7 @@
 	Update Field	Aktualizovat pole
 	Update Index	Aktualizovat rejstřík
 	Update Style to Match Selection	Aktualizovat styl podle výběru
-	Update Table	Aktualizovat obsah
+	Update Table	Aktualizovat
 	Update Table of Figures	Aktualizovat seznam obrázků
 	Update to Match	Aktualizovat podle výběru
 	Update to Match Selection	Aktualizovat podle výběru
@@ -1244,8 +1244,8 @@
 	WordCraft	WordCraft
 	Words	Slova
 	Words only	Pouze slova
-	Wrap Text	Zalomit text
-	Wrap\nText	Zalomit\ntext
+	Wrap Text	Obtékání textu
+	Wrap\nText	Obtékání\ntextu
 	Write & Insert Fields	Psaní a vkládání polí
 	Write a reply	Napište odpověď
 	Yes	Ano
@@ -1322,8 +1322,8 @@
 	Size and Crop…	Velikost a oříznutí…
 	Insert Columns to the Left	Vložit sloupce vlevo
 	Insert Columns to the Right	Vložit sloupce vpravo
-	Insert Rows Above	Vložit řádky nad
-	Insert Rows Below	Vložit řádky pod
+	Insert Rows Above	Vložit řádky výše
+	Insert Rows Below	Vložit řádky níže
 	Mon	Po
 	Tue	Út
 	Wed	St
@@ -1352,12 +1352,12 @@
 	Interface size:	Velikost rozhraní:
 	Makes the ribbon, menus and dialogs larger or smaller, on top of your system's display scaling. Document zoom is separate.	Zvětší nebo zmenší pás karet, nabídky a dialogová okna nad rámec škálování displeje v systému. Lupa dokumentu se nastavuje zvlášť.
 	In Line with Text	V řádku s textem
-	Square	Čtvercové
+	Square	Čtverec
 	Through	Průchozí
 	Top and Bottom	Nahoře a dole
 	Behind Text	Za textem
 	In Front of Text	Před textem
-	Wrap Text Sides	Strany zalomení textu
+	Wrap Text Sides	Strany obtékání textu
 	Both Sides	Obě strany
 	Left Only	Pouze vlevo
 	Right Only	Pouze vpravo
@@ -1370,7 +1370,7 @@
 	Keys for this command:	Klávesy pro tento příkaz:
 	New shortcut:	Nová klávesová zkratka:
 	Now used by {command}	Nyní používá: {command}
-	Not used by any command	Nepoužívá žádný příkaz
+	Not used by any command	Nepoužíváno žádným příkazem
 	Remove every custom shortcut and restore the built-in keys?	Odebrat všechny vlastní klávesové zkratky a obnovit výchozí klávesy?
 	Assign	Přiřadit
 	Reset All…	Obnovit vše…
@@ -1397,3 +1397,424 @@
 	New Group	Nová skupina
 	Rename…	Přejmenovat…
 	Ribbon and Quick Access Toolbar:	Pás karet a panel nástrojů Rychlý přístup:
+	Choose the sheet that holds the recipients.	Vyberte list, který obsahuje příjemce.
+	First row of data contains column headers	První řádek dat obsahuje záhlaví sloupců
+	Accessibility Pane	Podokno přístupnosti
+	Alt Text Pane	Podokno alternativního textu
+	Alt\nText	Alternativní\ntext
+	View Alt Text…	Zobrazit alternativní text…
+	Mark as decorative	Označit jako dekorativní
+	Title:	Název:
+	Errors ({n})	Chyby ({n})
+	Warnings ({n})	Upozornění ({n})
+	Tips ({n})	Tipy ({n})
+	No accessibility issues found.	Nebyly nalezeny žádné problémy s přístupností.
+	Describe what this object shows, for people who can't see it.	Popište, co tento objekt zobrazuje, pro lidi, kteří jej nevidí.
+	Decorative objects only add visual interest: screen readers skip them.	Dekorativní objekty slouží pouze jako vizuální doplněk: čtečky obrazovky je přeskakují.
+	Describe what this table shows, for people who can't see it.	Popište, co tato tabulka zobrazuje, pro lidi, kteří ji nevidí.
+	Select a picture, shape, chart or table to describe it.	Vyberte obrázek, tvar, graf nebo tabulku, kterou chcete popsat.
+	Document Grid	Mřížka dokumentu
+	No grid	Bez mřížky
+	Lines only	Pouze řádky
+	Lines and characters	Řádky a znaky
+	Text snaps to characters	Text se přichytává ke znakům
+	Characters per line:	Znaků na řádek:
+	Lines per page:	Řádků na stránku:
+	Moved from	Přesunuto odtud
+	Moved to	Přesunuto sem
+	Right-to-Left Table	Směr tabulky zprava doleva
+	Right-to-Left Section	Směr oddílu zprava doleva
+	Table direction:	Směr tabulky:
+	Section direction:	Směr oddílu:
+	Drawing Canvas	Kreslicí plátno
+	New Drawing Canvas	Nové kreslicí plátno
+	Fit	Přizpůsobit
+	Expand	Rozšířit
+	Scale Drawing	Škálovat kresbu
+	Canvas Member	Prvek plátna
+	Arrows	Šipky
+	Communication	Komunikace
+	Office	Kancelář
+	People	Lidé
+	Nature	Příroda
+	Weather	Počasí
+	Technology	Technologie
+	Transport	Doprava
+	Icon Color	Barva ikony
+	Search icons	Hledat ikony
+	No icons match your search.	Vašemu hledání neodpovídají žádné ikony.
+	Recolor a one-color picture, such as an icon	Přebarví jednobarevný obrázek, například ikonu
+	Enclose Characters	Ohraničit znaky
+	Shrink text	Zmenšit text
+	Enlarge symbol	Zvětšit symbol
+	Enclosure	Ohraničení
+	Circle	Kruh
+	Change Chart Type	Změnit typ grafu
+	Chart Design	Návrh grafu
+	Type	Typ
+	Edit Data	Upravit data
+	Chart Title	Název grafu
+	Chart Layouts	Rozvržení grafu
+	Add Chart Element	Přidat prvek grafu
+	Legend	Legenda
+	Data Labels	Popisky dat
+	Above Chart	Nad grafem
+	Insert Chart	Vložit graf
+	Clustered Column	Skupinový sloupcový
+	Stacked Column	Skládaný sloupcový
+	Clustered Bar	Skupinový pruhový
+	Stacked Bar	Skládaný pruhový
+	Area	Plošný
+	Pie	Výsečový
+	Doughnut	Prstencový
+	Scatter	Bodový
+	“{text}” ({row}, {series}) isn't a number.	„{text}“ ({row}, {series}) není číslo.
+	Category {n}	Kategorie {n}
+	Series {n}	Řada {n}
+	Type the categories down the side and a column of values per series.	Zadejte kategorie pod sebe a pro každou řadu sloupec hodnot.
+	Categories	Kategorie
+	Series name	Název řady
+	Remove series	Odebrat řadu
+	Remove row	Odebrat řádek
+	Add Row	Přidat řádek
+	Add Series	Přidat řadu
+	Edit\nData	Upravit\ndata
+	Change\nChart Type	Změnit\ntyp grafu
+	Align Text	Zarovnat text
+	Create Link	Vytvořit propojení
+	Break Link	Zrušit propojení
+	Rotate all text 90°	Otočit všechen text o 90°
+	Rotate all text 270°	Otočit všechen text o 270°
+	Stacked	Pod sebou
+	Middle	Uprostřed
+	Click the empty text box the text should continue in (Esc cancels)	Klikněte na prázdné textové pole, ve kterém má text pokračovat (Esc zruší)
+	Not linked: click a text box	Nepropojeno: klikněte na textové pole
+	Location	Umístění
+	Endnotes	Vysvětlivky
+	Below text	Pod textem
+	End of section	Konec oddílu
+	End of document	Konec dokumentu
+	Footnotes to endnotes	Převést poznámky pod čarou na vysvětlivky
+	Endnotes to footnotes	Převést vysvětlivky na poznámky pod čarou
+	Swap footnotes and endnotes	Zaměnit poznámky pod čarou a vysvětlivky
+	Custom mark:	Vlastní značka:
+	Continuous numbering	Průběžné číslování
+	Apply	Použít
+	Convert Notes	Převést poznámky
+	A, B, C, …	A, B, C, …
+	Above the item	Nad položkou
+	Accessed on	Datum přístupu
+	Add New Source…	Přidat nový pramen…
+	Add the chapter number	Přidat číslo kapitoly
+	Atmosphere	Atmosféra
+	Below the item	Pod položkou
+	Book	Kniha
+	Book title	Název knihy
+	Caption	Titulek
+	Caption Numbering	Číslování titulků
+	Caption text	Text titulku
+	Caption:	Titulek:
+	Chapter in a book	Kapitola v knize
+	Chapters begin at:	Kapitoly začínají stylem:
+	Collect entries from:	Zahrnout do obsahu:
+	Columns:	Sloupce:
+	Conference	Konference
+	Conference paper	Příspěvek na konferenci
+	Container Title	Název souborného díla
+	Create Source	Vytvořit pramen
+	Cross-reference:	Křížový odkaz:
+	Custom Table of Contents…	Vlastní obsah…
+	DOI	DOI
+	Day	Den
+	Delete Label	Odstranit popisek
+	Edit Source	Upravit pramen
+	Edition	Vydání
+	Edit…	Upravit…
+	Entry marked.	Položka byla označena.
+	Example: {sample}	Příklad: {sample}
+	Figure	Obrázek
+	Film	Film
+	Heading styles (levels 1–{n})	Styly nadpisů (úrovně 1–{n})
+	Heading {n}	Nadpis {n}
+	I, II, III, …	I, II, III, …
+	Include page numbers	Zahrnout čísla stránek
+	Indented	Odsazený
+	Institution	Instituce
+	Ionosphere	Ionosféra
+	Issue	Číslo
+	Journal	Časopis
+	Label:	Popisek:
+	Last, First; Last, First	Příjmení, Jméno; Příjmení, Jméno
+	Leave the label out of the caption	Vynechat popisek z titulku
+	Letter headings	Abecední nadpisy
+	Levels:	Úrovně:
+	Link entries to their headings	Propojit položky s nadpisy
+	Made from the author and year when empty	Pokud zůstane pole prázdné, vytvoří se z autora a roku
+	Magazine or newspaper article	Článek v časopise nebo novinách
+	Main entry:	Hlavní položka:
+	Mark	Označit
+	Mark All	Označit vše
+	Mark Entry…	Označit položku…
+	Mark Index Entry	Označit položku rejstříku
+	Mesosphere	Mezosféra
+	Month	Měsíc
+	New Label	Nový popisek
+	New Label…	Nový popisek…
+	New…	Nový…
+	No sources yet.	Zatím žádné prameny.
+	Numbering…	Číslování…
+	Options…	Možnosti…
+	Other	Jiné
+	Other styles and their TOC level:	Další styly a jejich úroveň v obsahu:
+	Outline levels	Úrovně osnovy
+	Page number style	Styl čísel stránek
+	Page numbers at the right margin	Čísla stránek u pravého okraje
+	Page title	Název stránky
+	Pages of bookmark:	Stránky záložky:
+	Periodical	Periodikum
+	Position:	Umístění:
+	Publisher	Vydavatel
+	Run-in	V jednom odstavci
+	See	Viz
+	Separator:	Oddělovač:
+	Show every bibliography field	Zobrazit všechna pole bibliografie
+	Site name	Název webu
+	Source Manager	Správce pramenů
+	Source type:	Typ pramene:
+	Sources in this document:	Prameny v tomto dokumentu:
+	Styles:	Styly:
+	Subentry:	Podpoložka:
+	TC entry fields	Pole položek obsahu (TC)
+	Tab leader:	Vodicí znak tabulátoru:
+	Table of Contents Options	Možnosti obsahu
+	Table of Contents Styles	Styly obsahu
+	Tag	Značka
+	This page	Tato stránka
+	Title	Název
+	Type:	Typ:
+	URL	URL
+	Volume	Ročník
+	Website	Webová stránka
+	Year	Rok
+	a, b, c, …	a, b, c, …
+	i, ii, iii, …	i, ii, iii, …
+	{n} entries marked.	Označeno položek: {n}.
+	Lasso Select	Výběr lasem
+	Move Selected Ink	Přesunout vybraný rukopis
+	Delete Selected Ink	Odstranit vybraný rukopis
+	Recolor Selected Ink	Přebarvit vybraný rukopis
+	Add Pen	Přidat pero
+	Remove Pen	Odebrat pero
+	Ink to Shape	Rukopis na tvar
+	Convert to Shapes	Převést na tvary
+	Ink Replay	Přehrát rukopis
+	Add\nPen	Přidat\npero
+	Rewind	Přetočit zpět
+	Forward	Vpřed
+	Stroke {n} of {total}	Tah {n} z {total}
+	Add line numbering	Přidat číslování řádků
+	Add to Document	Přidat do dokumentu
+	Address labels	Adresní štítky
+	Arabic	Arabština
+	Auto	Automaticky
+	Automatically hyphenate document	Automaticky dělit slova v dokumentu
+	Chinese (Simplified)	Čínština (zjednodušená)
+	Chinese (Traditional)	Čínština (tradiční)
+	Column:	Sloupec:
+	Count by:	Číslovat po:
+	Czech	Čeština
+	Danish	Dánština
+	Delivery address:	Dodací adresa:
+	Detect language automatically	Rozpoznat jazyk automaticky
+	Do not check spelling or grammar	Nekontrolovat pravopis ani gramatiku
+	Dutch	Nizozemština
+	English (United Kingdom)	Angličtina (Spojené království)
+	Envelope size:	Velikost obálky:
+	Estonian	Estonština
+	Finnish	Finština
+	French (France)	Francouzština (Francie)
+	From text:	Od textu:
+	Full page of the same label	Celá stránka stejných štítků
+	German (Germany)	Němčina (Německo)
+	Greek	Řečtina
+	Hebrew	Hebrejština
+	Hyphenate at:	Rozdělit slovo v místě:
+	Hyphenate words in CAPS	Dělit slova psaná VELKÝMI PÍSMENY
+	Hyphenation Options…	Možnosti dělení slov…
+	Hyphenation zone:	Pásmo dělení slov:
+	Italian	Italština
+	Japanese	Japonština
+	Korean	Korejština
+	Limit consecutive hyphens to:	Omezit počet po sobě jdoucích rozdělení:
+	Line Numbering Options…	Možnosti číslování řádků…
+	Manual Hyphenation	Ruční dělení slov
+	Manual hyphenation is complete.	Ruční dělení slov je dokončeno.
+	Manual…	Ručně…
+	Mark selected text as:	Označit vybraný text jako:
+	New Document	Nový dokument
+	No limit	Bez omezení
+	Norwegian (Bokmål)	Norština (Bokmål)
+	Numbering:	Číslování:
+	Omit	Vynechat
+	One label per recipient	Jeden štítek na příjemce
+	Polish	Polština
+	Portuguese (Brazil)	Portugalština (Brazílie)
+	Portuguese (Portugal)	Portugalština (Portugalsko)
+	Return address labels	Štítky se zpáteční adresou
+	Return address:	Zpáteční adresa:
+	Row:	Řádek:
+	Russian	Ruština
+	Serbian (Cyrillic)	Srbština (cyrilice)
+	Serbian (Latin)	Srbština (latinka)
+	Set As Default	Nastavit jako výchozí
+	Shipping labels	Přepravní štítky
+	Single label	Jeden štítek
+	Spanish (Mexico)	Španělština (Mexiko)
+	Spanish (Spain)	Španělština (Španělsko)
+	Swedish	Švédština
+	Turkish	Turečtina
+	Ukrainian	Ukrajinština
+	{language} is now the document's default language.	Výchozím jazykem dokumentu je nyní {language}.
+
+# Compare / Combine, AutoCorrect Options and Restrict Editing (#412)
+	1. Formatting restrictions	1. Omezení formátování
+	2. Editing restrictions	2. Omezení úprav
+	3. Start enforcement	3. Zahájení ochrany
+	<< Less	<< Méně
+	Another file	Jiný soubor
+	Apply as you type	Používat při psaní
+	AutoCorrect	Automatické opravy
+	AutoFormat As You Type	Automatický formát při psaní
+	Automatic bulleted lists	Automatické seznamy s odrážkami
+	Automatic numbered lists	Automatické číslované seznamy
+	Border lines	Čáry ohraničení
+	Capitalize first letter of sentences	Velké první písmeno ve větách
+	Capitalize first letter of table cells	Velké první písmeno v buňkách tabulky
+	Capitalize names of days	Velké první písmeno v názvech dnů
+	Case changes	Změny velikosti písmen
+	Character level	Úroveň znaků
+	Checked styles are allowed:	Povolené jsou zaškrtnuté styly:
+	Combine Documents	Zkombinovat dokumenty
+	Compare Documents	Porovnat dokumenty
+	Compared: {changes} changes	Porovnáno: počet změn: {changes}
+	Comparing with another file needs the desktop app.	Porovnání s jiným souborem vyžaduje desktopovou aplikaci.
+	Comparison settings	Nastavení porovnání
+	Don't capitalize after:	Nepsat velké písmeno po:
+	Editing in this document is restricted.	Úpravy v tomto dokumentu jsou omezeny.
+	Every change is recorded as a tracked change.	Každá úprava se zaznamená jako sledovaná změna.
+	Everyone	Všichni
+	Exceptions (optional)	Výjimky (volitelné)
+	Exceptions…	Výjimky…
+	Fields	Pole
+	Filling in forms	Vyplňování formulářů
+	Find Next Editable Region	Najít další upravitelnou oblast
+	Footnotes and endnotes	Poznámky pod čarou a vysvětlivky
+	Formatting, case changes, white space and tables are compared; the other settings are kept for later.	Porovnává se formátování, změny velikosti písmen, mezery a tabulky; ostatní nastavení jsou zachována pro pozdější využití.
+	Fractions (1/2) as fraction characters (½)	Zlomky (1/2) jako znaky zlomků (½)
+	Headers and footers	Záhlaví a zápatí
+	Hyphens (--) as dashes (—)	Spojovníky (--) jako pomlčky (—)
+	In equations, typing a name after a backslash replaces it with its symbol.	V rovnicích se název napsaný za zpětným lomítkem nahradí příslušným symbolem.
+	Internet addresses as links	Internetové adresy jako odkazy
+	Label changes with:	Označit změny štítkem:
+	Limit formatting to a selection of styles	Omezit formátování na vybrané styly
+	Math AutoCorrect	Automatické opravy matematiky
+	More >>	Více >>
+	Moves	Přesuny
+	New document	Nový dokument
+	No changes (read only)	Žádné změny (jen pro čtení)
+	Only allow this kind of editing:	Povolit pouze tento typ úprav:
+	Only comments can be added, except in regions marked editable.	Lze přidávat pouze komentáře, kromě oblastí označených jako upravitelné.
+	Only form fields can be filled in.	Lze vyplňovat pouze formulářová pole.
+	Only the allowed styles can be applied.	Lze použít pouze povolené styly.
+	Ordinals (1st) as superscript	Řadové číslovky (1st) s horním indexem
+	Original document	Původní dokument
+	This password type isn't supported.	Tento typ hesla není podporován.
+	Replace as you type	Nahrazovat při psaní
+	Replace text as you type	Nahrazovat text při psaní
+	Replace:	Nahradit:
+	Revised document	Upravený dokument
+	Select text, then tick who can still edit it.	Vyberte text a zaškrtněte, kdo jej může nadále upravovat.
+	Settings…	Nastavení…
+	Show changes at:	Zobrazit změny na úrovni:
+	Show changes in:	Zobrazit změny v:
+	Smart quotes instead of straight quotes	Typografické uvozovky místo rovných
+	Start Enforcing Protection	Zahájit vynucování ochrany
+	Stop Protection	Ukončit ochranu
+	Text boxes	Textová pole
+	The document is read only, except for regions marked editable.	Dokument je určen jen pro čtení, kromě oblastí označených jako upravitelné.
+	The password is optional; without it anyone can stop the protection.	Heslo je volitelné; bez něj může ochranu ukončit kdokoliv.
+	This document	Tento dokument
+	Tracked changes	Sledované změny
+	Type the password to stop the protection.	Zadejte heslo pro ukončení ochrany.
+	White space	Mezery
+	With:	Čím:
+	Word level	Úroveň slov
+
+# Developer & Content Controls (#381)
+	Developer	Vývojář
+	Controls	Ovládací prvky
+	Rich Text Content Control	Ovládací prvek obsahu s formátovaným textem
+	Plain Text Content Control	Ovládací prvek obsahu s prostým textem
+	Picture Content Control	Ovládací prvek obsahu s obrázkem
+	Building Block Gallery Content Control	Ovládací prvek obsahu galerie stavebních bloků
+	Check Box Content Control	Ovládací prvek obsahu zaškrtávacího políčka
+	Combo Box Content Control	Ovládací prvek obsahu pole se seznamem
+	Drop-Down List Content Control	Ovládací prvek obsahu rozevíracího seznamu
+	Date Picker Content Control	Ovládací prvek obsahu pro výběr data
+	Repeating Section Content Control	Ovládací prvek obsahu opakujícího se oddílu
+	Design Mode	Režim návrhu
+	Content Control at Selection	Ovládací prvek obsahu ve výběru
+	Toggle Check Box	Přepnout zaškrtávací políčko
+	Choose List Item	Vybrat položku seznamu
+	Set Date	Nastavit datum
+	Remove Content Control	Odebrat ovládací prvek obsahu
+	Content Control Properties	Vlastnosti ovládacího prvku obsahu
+	Placeholder text	Zástupný text
+	Can't be deleted	Nelze odstranit
+	Contents can't be edited	Obsah nelze upravovat
+	Remove the control once edited	Po úpravě ovládací prvek odebrat
+	Allow line breaks	Povolit zalomení řádků
+	Date format	Formát data
+	Checked symbol	Symbol zaškrtnutí
+	Unchecked symbol	Symbol nezaškrtnutí
+	List entries	Položky seznamu
+	Display text	Zobrazený text
+	Value	Hodnota
+	Today	Dnes
+	Put the caret in a content control first.	Nejprve umístěte kurzor do ovládacího prvku obsahu.
+
+# WordArt and connectors (#416)
+	WordArt Styles	Styly WordArt
+	Text Fill	Výplň textu
+	Text Outline	Obrys textu
+	Transform	Transformace
+	No Fill	Bez výplně
+	No Outline	Bez obrysu
+	Reflection	Odraz
+	No Reflection	Bez odrazu
+	No Transform	Bez transformace
+	Connect Shapes	Propojit tvary
+	Straight Connector	Přímá spojnice
+	Straight Arrow Connector	Přímá spojnice se šipkou
+	Elbow Connector	Lomená spojnice
+	Elbow Arrow Connector	Lomená spojnice se šipkou
+	Curved Connector	Zakřivená spojnice
+	Curved Arrow Connector	Zakřivená spojnice se šipkou
+	Arch Up	Oblouk nahoru
+	Arch Down	Oblouk dolů
+	Slant Up	Zkosení nahoru
+	Slant Down	Zkosení dolů
+	Inflate	Nafouknutí
+	Deflate	Vyfouknutí
+	Chevron Up	Stříška nahoru
+	Chevron Down	Stříška dolů
+	Triangle Up	Trojúhelník nahoru
+	Triangle Down	Trojúhelník dolů
+	Solid Accent	Plná barva zvýraznění
+	Light with Outline	Světlý s obrysem
+	Hollow	Obrysový
+	Accent Gradient	Přechod barvy zvýraznění
+	Dark with Shadow	Tmavý se stínem
+	Soft Glow	Jemná záře
+	Accent with Reflection	Barva zvýraznění s odrazem
+	Warm Gradient with Outline	Teplý přechod s obrysem
