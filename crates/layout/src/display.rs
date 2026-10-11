@@ -320,7 +320,7 @@ pub fn page_display(doc: &Document, page: &Page, opts: &DisplayOptions) -> Vec<D
     for it in &page.items {
         item(doc, it, opts, ba, &mut out);
     }
-    if opts.markup && opts.revisions.insertions_deletions && opts.revisions.changed_lines != ChangeBar::None {
+    if opts.markup && (opts.revisions.insertions_deletions || opts.revisions.formatting) && opts.revisions.changed_lines != ChangeBar::None {
         change_bars(doc, page, &opts.revisions, ba, &mut out);
     }
     out
@@ -329,7 +329,8 @@ pub fn page_display(doc: &Document, page: &Page, opts: &DisplayOptions) -> Vec<D
 /// The automatic colour of the bars beside changed lines.
 pub const CHANGE_BAR: Rgb = Rgb(0x50, 0x50, 0x50);
 
-/// Bars in the margin beside body lines with tracked insertions or deletions.
+/// Bars in the margin beside body lines with tracked insertions or deletions, or (when shown)
+/// tracked formatting changes of their text, paragraph or paragraph mark.
 fn change_bars(doc: &Document, page: &Page, m: &MarkupOptions, alpha: f32, out: &mut Vec<Draw>) {
     // Outside: the left margin, or the outer one of a right-hand page with mirrored margins.
     let right = match m.changed_lines {
@@ -345,12 +346,17 @@ fn change_bars(doc: &Document, page: &Page, m: &MarkupOptions, alpha: f32, out: 
             continue;
         }
         let Some(first) = pl.lines.get(*l0) else { continue };
-        let mark_rev = doc.para(*story, path).is_some_and(|p| p.mark.ins.is_some() || p.mark.del.is_some());
+        let (text, fmt) = (m.insertions_deletions, m.formatting);
+        let para = doc.para(*story, path);
+        let mark_rev = para.is_some_and(|p| (text && (p.mark.ins.is_some() || p.mark.del.is_some())) || (fmt && p.mark.fmt_change.is_some()));
+        // A paragraph whose own formatting changed is marked on every line.
+        let para_fmt = fmt && para.is_some_and(|p| p.props.fmt_change.is_some());
         for li in *l0..*l1 {
             let Some(line) = pl.lines.get(li) else { continue };
-            let changed = (line.c0..line.c1)
-                .filter_map(|k| pl.clusters.get(k).and_then(|c| pl.styles.get(c.style as usize)))
-                .any(|st| st.rc.ins.is_some() || st.rc.del.is_some())
+            let changed = para_fmt
+                || (line.c0..line.c1)
+                    .filter_map(|k| pl.clusters.get(k).and_then(|c| pl.styles.get(c.style as usize)))
+                    .any(|st| (text && (st.rc.ins.is_some() || st.rc.del.is_some())) || (fmt && st.rc.fmt.is_some()))
                 || (mark_rev && line.end == LineEnd::Para);
             if changed {
                 let top = y + (line.top - first.top);
@@ -801,6 +807,35 @@ fn lines(
                     }
                 }
                 _ => {}
+            }
+        }
+        // Ruby (Phonetic Guide) text over its base text, in runs of one style.
+        for r in pl.rubies.iter().filter(|r| (line.c0..line.c1).contains(&r.cluster)) {
+            let Some(bst) = pl.clusters.get(r.cluster).and_then(|c| pl.styles.get(c.style as usize)) else { continue };
+            if bst.rc.del.is_some() && !opts.markup {
+                continue;
+            }
+            let cx = x + line.cl_left(r.cluster).unwrap_or(0.0);
+            let y = base - bst.shift - r.raise;
+            let mut i = 0;
+            while let Some(&(style, _)) = r.glyphs.get(i) {
+                let n = r.glyphs.get(i..).map_or(0, |g| g.iter().take_while(|(s, _)| *s == style).count()).max(1);
+                let run = r.glyphs.get(i..i + n).unwrap_or(&[]);
+                let ranges = r.ranges.get(i..i + n).map(<[_]>::to_vec).unwrap_or_default();
+                i += n;
+                let Some(st) = pl.styles.get(style as usize) else { continue };
+                out.push(Draw::Glyphs {
+                    face: st.face,
+                    size: st.size,
+                    glyphs: run.iter().map(|(_, g)| (g.gid, cx + g.dx, y - g.dy)).collect(),
+                    color: text_color(&st.rc.color, st.rc.shading.or(st.rc.highlight)),
+                    alpha,
+                    synth_bold: st.synth_bold,
+                    synth_italic: st.synth_italic,
+                    text: r.text.clone(),
+                    link: None,
+                    ranges,
+                });
             }
         }
         // Formatting marks.

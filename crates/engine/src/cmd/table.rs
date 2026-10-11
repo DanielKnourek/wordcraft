@@ -462,6 +462,10 @@ fn del_col(s: &mut Session, _: &Value) -> CmdResult {
     }
     let g = t.grid_col(r, c);
     t.delete_col(g);
+    // Rows left without cells are dropped; if that was every row, no table is left.
+    if t.rows.is_empty() {
+        return del_table(s, &Value::Null);
+    }
     fix_caret(s, &tp, r, c.saturating_sub(1))
 }
 
@@ -624,7 +628,11 @@ fn formula(s: &mut Session, v: &Value) -> CmdResult {
     let text = if val.fract() == 0.0 && val.abs() < 1e15 { format!("{}", val as i64) } else { format!("{val:.2}") };
     let props = s.typing_props();
     let at = s.sel.focus.clone();
-    let end = s.doc.insert_object(&at, wordcraft_doc::InlineObject::Field { instr: f.clone(), result: text.clone(), locked: false }, &props)?;
+    let end = s.doc.insert_object(
+        &at,
+        wordcraft_doc::InlineObject::Field { instr: f.clone(), result: text.clone(), locked: false, code: false },
+        &props,
+    )?;
     s.sel = Selection::caret(end);
     Ok(json!({"result": text}))
 }

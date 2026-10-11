@@ -1086,7 +1086,6 @@
 	Style Inspector	Inspektor stylů
 	Style Set	Sada stylů
 	Style:	Styl:
-	Style: APA	Styl: APA
 	Styles	Styly
 	Styles Pane	Podokno stylů
 	Subscript	Dolní index
@@ -1266,3 +1265,135 @@
 	{selected} of {words} words	Počet slov: {words}; vybráno: {selected}
 	{size} pt	{size} b.
 	{words} words	Počet slov: {words}
+	Base text:	Základní text:
+	Distribute letters	Rozmístit písmena
+	Distribute spacing	Rozmístit mezery
+	Offset (pt):	Posun (b.):
+	Phonetic Guide	Fonetický průvodce
+	Remove	Odebrat
+	Right (vertical)	Vpravo (svisle)
+	Ruby text:	Text ruby:
+	Copyright Sign	Symbol autorských práv
+	Insert Date Field	Vložit pole data
+	Insert Page Field	Vložit pole čísla stránky
+	Insert Time Field	Vložit pole času
+	Registered Sign	Symbol registrované ochranné známky
+	Reset Character Formatting	Obnovit formátování znaků
+	Reset Paragraph Formatting	Obnovit formátování odstavce
+	Trademark Sign	Symbol ochranné známky
+	Size (pt):	Velikost (b.):
+	Style: {style}	Styl: {style}
+	Align Top Left	Zarovnat nahoru vlevo
+	Align Top Center	Zarovnat nahoru na střed
+	Align Top Right	Zarovnat nahoru vpravo
+	Align Center Left	Zarovnat na střed vlevo
+	Align Center	Zarovnat na střed
+	Align Center Right	Zarovnat na střed vpravo
+	Align Bottom Left	Zarovnat dolů vlevo
+	Align Bottom Center	Zarovnat dolů na střed
+	Align Bottom Right	Zarovnat dolů vpravo
+	{contributors} contributors · {commits} commits	Přispěvatelé: {contributors} · commity: {commits}
+	{cols}×{rows} Table	Tabulka {cols}×{rows}
+	AaBbYyZz	AaBbYyZz ČčŘřŽž
+	pt	b.
+	Document1	Dokument1
+	Username	Uživatelské jméno
+	Display name	Zobrazované jméno
+	Real name	Skutečné jméno
+	Name	Jméno
+	PRs	PR
+	Commits	Commity
+	First	První
+	Last	Poslední
+	Model	Model
+	Version	Verze
+	% of all commits	Podíl na commitech (%)
+	Lines +/−	Řádky +/−
+	Craft	Řemeslo
+	Studio	Studio
+	Atelier	Ateliér
+	Darkroom	Temná komora
+	Gallery	Galerie
+	Sketchbook	Skicák
+	Change Picture…	Změnit obrázek…
+	Font…	Písmo…
+	Paragraph…	Odstavec…
+	Link…	Odkaz…
+	Size and Crop…	Velikost a oříznutí…
+	Insert Columns to the Left	Vložit sloupce vlevo
+	Insert Columns to the Right	Vložit sloupce vpravo
+	Insert Rows Above	Vložit řádky nad
+	Insert Rows Below	Vložit řádky pod
+	Mon	Po
+	Tue	Út
+	Wed	St
+	Sum	Součet
+	North	Sever
+	South	Jih
+	West	Západ
+	Total	Celkem
+	Draw\nTable	Nakreslit\ntabulku
+	Move Paragraph Up	Přesunout odstavec nahoru
+	Move Paragraph Down	Přesunout odstavec dolů
+	Promote	Zvýšit úroveň
+	Demote	Snížit úroveň
+	Go Back	Přejít zpět
+	Toggle Unicode Character	Přepnout znak Unicode
+	Toggle Field Codes	Přepnout kódy polí
+	Edit Field Code	Upravit kód pole
+	Unlink Fields	Zrušit propojení polí
+	Lock Fields	Zamknout pole
+	Unlock Fields	Odemknout pole
+	Next Field	Další pole
+	Previous Field	Předchozí pole
+	Selected Fields	Vybraná pole
+	Edit Field…	Upravit pole…
+	Formatted	Formátováno
+	Interface size:	Velikost rozhraní:
+	Makes the ribbon, menus and dialogs larger or smaller, on top of your system's display scaling. Document zoom is separate.	Zvětší nebo zmenší pás karet, nabídky a dialogová okna nad rámec škálování displeje v systému. Lupa dokumentu se nastavuje zvlášť.
+	In Line with Text	V řádku s textem
+	Square	Čtvercové
+	Through	Průchozí
+	Top and Bottom	Nahoře a dole
+	Behind Text	Za textem
+	In Front of Text	Před textem
+	Wrap Text Sides	Strany zalomení textu
+	Both Sides	Obě strany
+	Left Only	Pouze vlevo
+	Right Only	Pouze vpravo
+	Largest Only	Pouze největší strana
+	Customize Keyboard	Přizpůsobit klávesnici
+	Choose a command	Vyberte příkaz
+	Choose a shortcut	Vyberte klávesovou zkratku
+	All Commands	Všechny příkazy
+	Commands:	Příkazy:
+	Keys for this command:	Klávesy pro tento příkaz:
+	New shortcut:	Nová klávesová zkratka:
+	Now used by {command}	Nyní používá: {command}
+	Not used by any command	Nepoužívá žádný příkaz
+	Remove every custom shortcut and restore the built-in keys?	Odebrat všechny vlastní klávesové zkratky a obnovit výchozí klávesy?
+	Assign	Přiřadit
+	Reset All…	Obnovit vše…
+	Press a key combination	Stiskněte kombinaci kláves
+	Customize	Přizpůsobit
+	Keyboard shortcuts:	Klávesové zkratky:
+	Customize…	Přizpůsobit…
+	Customize Ribbon	Přizpůsobit pás karet
+	Add to Quick Access Toolbar	Přidat na panel nástrojů Rychlý přístup
+	Remove from Quick Access Toolbar	Odebrat z panelu nástrojů Rychlý přístup
+	Customize the Ribbon…	Přizpůsobit pás karet…
+	Customize Quick Access Toolbar…	Přizpůsobit panel nástrojů Rychlý přístup…
+	More Commands…	Další příkazy…
+	Ribbon	Pás karet
+	(Custom)	(Vlastní)
+	Remove every custom tab and group and show all tabs again?	Odebrat všechny vlastní karty a skupiny a znovu zobrazit všechny karty?
+	Put the default commands back on the Quick Access Toolbar?	Vrátit výchozí příkazy na panel nástrojů Rychlý přístup?
+	Reset…	Obnovit…
+	Add >>	Přidat >>
+	<< Remove	<< Odebrat
+	Pick a custom group (New Group makes one)	Vyberte vlastní skupinu (novou vytvoříte tlačítkem Nová skupina)
+	Ribbon tabs	Karty pásu karet
+	New Tab	Nová karta
+	New Group	Nová skupina
+	Rename…	Přejmenovat…
+	Ribbon and Quick Access Toolbar:	Pás karet a panel nástrojů Rychlý přístup:

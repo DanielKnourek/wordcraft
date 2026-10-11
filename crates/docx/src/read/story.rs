@@ -4,8 +4,8 @@ use std::sync::Arc;
 
 use wordcraft_doc::effects::{Glow, Shadow, ShapeEffects};
 use wordcraft_doc::graphic::{Embedded, Graphic, GraphicItem, GraphicKind};
-use wordcraft_doc::para::{Anchor, Float, FloatAlign, NoteKind, ShapeKind, Wrap};
-use wordcraft_doc::props::{CharProps, Rgb};
+use wordcraft_doc::para::{Anchor, Float, FloatAlign, NoteKind, ShapeKind, Wrap, WrapText};
+use wordcraft_doc::props::{CharProps, NumChange, PropChange, Rgb};
 use wordcraft_doc::table::{Cell, MAX_COLS, MAX_ROWS, Row, Table};
 use wordcraft_doc::{Block, Blocks, InlineObject, Paragraph, PartKind, RevisionKind, Run, para_block};
 
@@ -250,6 +250,19 @@ impl Reader<'_> {
                         _ => {}
                     }
                 }
+                para.mark.fmt_change = self.rpr_change(rpr);
+            }
+            // Tracked formatting changes (§17.13.5.29, §17.13.5.19): the paragraph properties
+            // before the change, and a change of the list numbering.
+            if let Some(ch) = ppr.child("w:pPrChange") {
+                let old = ch.child("w:pPr").map(|o| self.pc.ppr(o).0.formatting()).unwrap_or_default();
+                para.props.fmt_change = PropChange::boxed(self.revision(RevisionKind::Format, ch), old);
+            }
+            if para.props.numbering.is_some()
+                && let Some(ch) = ppr.child("w:numPr").and_then(|n| n.child("w:numberingChange"))
+            {
+                let original = ch.attr("w:original").unwrap_or("").chars().take(256).collect();
+                para.props.num_change = Some(Box::new(NumChange { rev: self.revision(RevisionKind::Format, ch), original }));
             }
             if let Some(s) = ppr.child("w:sectPr") {
                 para.section = Some(Box::new(self.read_section(s, rels)));
@@ -265,8 +278,21 @@ impl Reader<'_> {
         para
     }
 
+    /// A tracked run formatting change in `rpr` (`w:rPrChange`, §17.13.5.31): the formatting
+    /// before it. A change nested inside it is ignored.
+    fn rpr_change(&mut self, rpr: &El) -> Option<Box<PropChange<CharProps>>> {
+        let ch = rpr.child("w:rPrChange")?;
+        let old = ch.child("w:rPr").map(|o| self.pc.rpr(o).formatting()).unwrap_or_default();
+        PropChange::boxed(self.revision(RevisionKind::Format, ch), old)
+    }
+
     pub fn read_section(&mut self, s: &El, rels: &Rels) -> wordcraft_doc::SectionProps {
         let (mut sp, refs) = sectpr(s);
+        // §17.13.5.32: the section's properties before a tracked change (no header references).
+        if let Some(ch) = s.child("w:sectPrChange") {
+            let old = ch.child("w:sectPr").map(|o| sectpr(o).0).unwrap_or_default();
+            sp.fmt_change = PropChange::boxed(self.revision(RevisionKind::Format, ch), old);
+        }
         for r in refs {
             let Some(rel) = rels.by_id(&r.rid) else { continue };
             if rel.external {
@@ -368,11 +394,12 @@ impl Reader<'_> {
         }
     }
 
-    fn run_props(&self, rpr: &El, ctx: &RunCtx) -> CharProps {
+    fn run_props(&mut self, rpr: &El, ctx: &RunCtx) -> CharProps {
         let mut p = self.pc.rpr(rpr);
         p.link = ctx.link.clone();
         p.ins = ctx.ins;
         p.del = ctx.del;
+        p.fmt_change = self.rpr_change(rpr);
         p
     }
     fn run_props_none(&self, ctx: &RunCtx) -> CharProps {
@@ -503,16 +530,10 @@ impl Reader<'_> {
                     pb.push_obj(InlineObject::CommentEnd { id: cid }, props);
                 }
             }
-            "w:pgNum" => self.emit_obj(sc, pb, InlineObject::Field { instr: "PAGE".into(), result: String::new(), locked: false }, props),
-            "w:ruby" => {
-                if let Some(base) = k.child("w:rubyBase") {
-                    for r in base.children("w:r") {
-                        for c in r.els() {
-                            self.read_run_child(sc, pb, c, props, rels, note, depth + 1);
-                        }
-                    }
-                }
+            "w:pgNum" => {
+                self.emit_obj(sc, pb, InlineObject::Field { instr: "PAGE".into(), result: String::new(), locked: false, code: false }, props)
             }
+            "w:ruby" => self.read_ruby(sc, pb, k, props),
             "mc:AlternateContent" => {
                 if let Some(c) = children_of_choice(k) {
                     for x in c.els() {
@@ -522,6 +543,61 @@ impl Reader<'_> {
             }
             _ => {}
         }
+    }
+
+    /// `w:ruby` (ECMA-376 §17.3.3.25): ruby text (`w:rt`) over base text (`w:rubyBase`), kept as
+    /// one [`InlineObject::Ruby`] in the base text's formatting (the first base run's).
+    fn read_ruby(&mut self, sc: &mut StoryCtx, pb: &mut PB, k: &El, props: &CharProps) {
+        const MAX: usize = 4096;
+        // The text of a part's runs and the formatting of its first run.
+        let part = |name: &str| -> (String, Option<CharProps>) {
+            let mut text = String::new();
+            let mut first = None;
+            for r in k.child(name).map(|e| e.children("w:r").collect::<Vec<_>>()).unwrap_or_default() {
+                if first.is_none() {
+                    first = Some(r.child("w:rPr").map(|p| self.pc.rpr(p)).unwrap_or_default());
+                }
+                for t in r.els().filter(|t| matches!(t.name.as_str(), "w:t" | "w:delText")) {
+                    if text.len() < MAX {
+                        text.push_str(&clean_text(&t.text()).replace('\t', " "));
+                    }
+                }
+            }
+            (text.chars().take(MAX).collect(), first)
+        };
+        let (base, base_props) = part("w:rubyBase");
+        let (ruby, ruby_props) = part("w:rt");
+        let mut bp = base_props.unwrap_or_default();
+        (bp.link, bp.ins, bp.del) = (props.link.clone(), props.ins, props.del);
+        if base.is_empty() {
+            return;
+        }
+        if ruby.is_empty() {
+            self.emit_text(sc, pb, &base, &bp);
+            return;
+        }
+        let pr = k.child("w:rubyPr");
+        let val = |n: &str| pr.and_then(|p| p.child(n)).and_then(|e| e.attr("w:val"));
+        let pt = |n: &str| val(n).and_then(|v| measure(v, 2.0)).filter(|v| v.is_finite() && *v >= 0.0);
+        let mut rp = ruby_props.unwrap_or_default();
+        let base_size = pt("w:hpsBaseText").filter(|v| *v > 0.0).or(bp.size).unwrap_or(0.0).min(1584.0);
+        let size = pt("w:hps").filter(|v| *v > 0.0).or(rp.size).unwrap_or(if base_size > 0.0 { base_size / 2.0 } else { 5.0 }).clamp(1.0, 1584.0);
+        let raise = pt("w:hpsRaise").unwrap_or_else(|| wordcraft_doc::para::ruby_raise(0.0, base_size.max(size), size)).min(1584.0);
+        // The ruby's size is `size`; its run keeps what it sets beyond the base text's formatting
+        // (writers repeat the base's).
+        (rp.size, rp.size_cs) = (None, None);
+        let rp = rp.minus(&bp);
+        let obj = InlineObject::Ruby {
+            base,
+            ruby,
+            align: val("w:rubyAlign").and_then(wordcraft_doc::para::RubyAlign::from_ooxml).unwrap_or_default(),
+            size,
+            raise,
+            base_size,
+            lang: val("w:lid").map(|l| l.chars().take(32).collect()).unwrap_or_default(),
+            props: Box::new(rp),
+        };
+        self.emit_obj(sc, pb, obj, &bp);
     }
 
     // ---- fields ----
@@ -587,7 +663,7 @@ impl Reader<'_> {
                 Item::Obj(o) => result.push_str(o.plain_text()),
             }
         }
-        let obj = InlineObject::Field { instr: f.instr.trim().to_string(), result, locked: f.locked };
+        let obj = InlineObject::Field { instr: f.instr.trim().to_string(), result, locked: f.locked, code: false };
         if let Some(parent) = sc.fields.last_mut()
             && !parent.spilled
             && parent.phase == Phase::Instr
@@ -606,7 +682,7 @@ impl Reader<'_> {
                 continue;
             }
             f.spilled = true;
-            pb.push_obj(InlineObject::Field { instr: f.instr.trim().to_string(), result: String::new(), locked: f.locked }, &f.props);
+            pb.push_obj(InlineObject::Field { instr: f.instr.trim().to_string(), result: String::new(), locked: f.locked, code: false }, &f.props);
             for (it, p) in f.buf.drain(..) {
                 match it {
                     Item::Text(t) => pb.push_text(&t, &p),
@@ -935,6 +1011,10 @@ impl Reader<'_> {
         let mut table = Table::default();
         if let Some(p) = t.child("w:tblPr") {
             table.props = self.pc.tblpr(p);
+            if let Some(ch) = p.child("w:tblPrChange") {
+                let old = ch.child("w:tblPr").map(|o| self.pc.tblpr(o)).unwrap_or_default();
+                table.props.fmt_change = PropChange::boxed(self.revision(RevisionKind::Format, ch), old);
+            }
         }
         if let Some(g) = t.child("w:tblGrid") {
             table.grid = g
@@ -947,11 +1027,19 @@ impl Reader<'_> {
         collect(t, "w:tr", &mut rows, 0);
         for tr in rows.into_iter().take(MAX_ROWS) {
             let mut row = Row { props: tr.child("w:trPr").map(trpr).unwrap_or_default(), cells: Vec::new() };
+            if let Some(ch) = tr.child("w:trPr").and_then(|p| p.child("w:trPrChange")) {
+                let old = ch.child("w:trPr").map(trpr).unwrap_or_default();
+                row.props.fmt_change = PropChange::boxed(self.revision(RevisionKind::Format, ch), old);
+            }
             let mut tcs = Vec::new();
             collect(tr, "w:tc", &mut tcs, 0);
             for tc in tcs.into_iter().take(MAX_COLS) {
-                let (props, hcont) =
+                let (mut props, hcont) =
                     tc.child("w:tcPr").map(tcpr).unwrap_or_else(|| (wordcraft_doc::props::CellProps { span: 1, ..Default::default() }, false));
+                if let Some(ch) = tc.child("w:tcPr").and_then(|p| p.child("w:tcPrChange")) {
+                    let old = ch.child("w:tcPr").map(|o| tcpr(o).0).unwrap_or_default();
+                    props.fmt_change = PropChange::boxed(self.revision(RevisionKind::Format, ch), old);
+                }
                 if hcont && let Some(prev) = row.cells.last_mut() {
                     prev.props.span = (prev.props.span + props.span.max(1)).min(63);
                     continue;
@@ -1003,9 +1091,15 @@ fn anchor_float(c: &El) -> Float {
     let behind = on_off_attr(c, "behindDoc");
     for k in c.els() {
         match k.name.as_str() {
-            "wp:wrapSquare" => f.wrap = Wrap::Square,
-            "wp:wrapTight" => f.wrap = Wrap::Tight,
-            "wp:wrapThrough" => f.wrap = Wrap::Through,
+            "wp:wrapSquare" => {
+                f.wrap = Wrap::Square;
+                f.wrap_text = k.attr("wrapText").and_then(WrapText::from_ooxml).unwrap_or_default();
+            }
+            "wp:wrapTight" | "wp:wrapThrough" => {
+                f.wrap = if k.name == "wp:wrapTight" { Wrap::Tight } else { Wrap::Through };
+                f.wrap_text = k.attr("wrapText").and_then(WrapText::from_ooxml).unwrap_or_default();
+                f.wrap_polygon = k.child("wp:wrapPolygon").and_then(wrap_polygon).map(Arc::new);
+            }
             "wp:wrapTopAndBottom" => f.wrap = Wrap::TopAndBottom,
             "wp:wrapNone" => f.wrap = if behind { Wrap::BehindText } else { Wrap::InFrontOfText },
             "wp:positionH" | "wp:positionV" => {
@@ -1047,6 +1141,30 @@ fn anchor_float(c: &El) -> Float {
     f
 }
 
+/// A `wp:wrapPolygon`: `wp:start`, then the `wp:lineTo` points (ECMA-376 Part 1, §20.4.2.16).
+fn wrap_polygon(e: &El) -> Option<wordcraft_doc::wrap::WrapPolygon> {
+    let pts = e
+        .els()
+        .filter(|k| k.name == "wp:start" || k.name == "wp:lineTo")
+        .take(wordcraft_doc::wrap::MAX_WRAP_POINTS + 1)
+        .filter_map(|k| Some((int(k.attr("x")?)?, int(k.attr("y")?)?)));
+    let mut pts: Vec<(i64, i64)> = pts.collect();
+    // The last point usually repeats the start to close the polygon.
+    if pts.len() > 3 && pts.first() == pts.last() {
+        pts.pop();
+    }
+    let edited = on_off_attr(e, "edited");
+    // An unedited polygon round the whole frame says nothing the object doesn't (it's what we
+    // write when there's no outline): keep deriving the outline.
+    let s = i64::from(wordcraft_doc::wrap::WRAP_SPACE);
+    let mut corners = pts.clone();
+    corners.sort_unstable();
+    if !edited && corners == [(0, 0), (0, s), (s, 0), (s, s)] {
+        return None;
+    }
+    wordcraft_doc::wrap::WrapPolygon::new(edited, pts)
+}
+
 /// The value of property `key` in a VML `style` attribute (CSS declarations; the last one wins).
 fn vml_style<'a>(style: &'a str, key: &str) -> Option<&'a str> {
     style.rsplit(';').filter_map(|d| d.split_once(':')).find(|(k, _)| k.trim().eq_ignore_ascii_case(key)).map(|(_, v)| v.trim())
@@ -1061,7 +1179,10 @@ fn vml_style<'a>(style: &'a str, key: &str) -> Option<&'a str> {
 fn vml_float(shape: &El, style: &str) -> Float {
     let get = |k: &str| vml_style(style, k);
     if !get("position").is_some_and(|p| p.eq_ignore_ascii_case("absolute")) {
-        return Float::default();
+        // Inline: only the turn (an OLE object turned in WordCraft is saved so, #319).
+        let mut f = Float::default();
+        f.set_spin(vml_spin(style));
+        return f;
     }
     let off = |k: &str| get(k).and_then(|v| measure(v, 1.0)).unwrap_or(0.0);
     let max = crate::units::MAX_LEN_PT;
@@ -1095,12 +1216,6 @@ fn vml_float(shape: &El, style: &str) -> Float {
         _ => Anchor::Paragraph,
     };
     let dist = |k: &str| get(k).and_then(|v| measure(v, 1.0)).unwrap_or(0.0).clamp(0.0, 1584.0);
-    // VML `rotation`: degrees, or 65536ths of one with an `fd` suffix; `flip`: `x` and/or `y`.
-    let rot = get("rotation").and_then(|v| match v.strip_suffix("fd") {
-        Some(fd) => fd.trim().parse::<f32>().ok().map(|f| f / 65_536.0),
-        None => v.trim().parse::<f32>().ok(),
-    });
-    let flip = get("flip").unwrap_or("");
     let mut f = Float {
         wrap,
         h_rel,
@@ -1114,8 +1229,20 @@ fn vml_float(shape: &El, style: &str) -> Float {
         dist_bottom: dist("mso-wrap-distance-bottom"),
         ..Float::default()
     };
-    f.set_spin(wordcraft_geom::Spin::new(rot.unwrap_or(0.0), flip.contains('x'), flip.contains('y')));
+    f.set_spin(vml_spin(style));
     f
+}
+
+/// A VML shape's turn: `rotation` in degrees, or 65536ths of one with an `fd` suffix; `flip`: `x`
+/// and/or `y`.
+fn vml_spin(style: &str) -> wordcraft_geom::Spin {
+    let get = |k: &str| vml_style(style, k);
+    let rot = get("rotation").and_then(|v| match v.strip_suffix("fd") {
+        Some(fd) => fd.trim().parse::<f32>().ok().map(|f| f / 65_536.0),
+        None => v.trim().parse::<f32>().ok(),
+    });
+    let flip = get("flip").unwrap_or("");
+    wordcraft_geom::Spin::new(rot.unwrap_or(0.0), flip.contains('x'), flip.contains('y'))
 }
 
 /// What a graphic's items cost to keep and draw: one per item, plus one per path segment.
