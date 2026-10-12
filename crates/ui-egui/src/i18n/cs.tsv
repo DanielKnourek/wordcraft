@@ -1234,7 +1234,6 @@
 	Widow/Orphan control	Kontrola osamocených řádků
 	Width and spacing	Šířka a mezery
 	Width:	Šířka:
-	Wildcards (regex)	Zástupné znaky (regulární výrazy)
 	Window	Okno
 	Word Count	Počet slov
 	Word document (*.docx)	Dokument Word (*.docx)
@@ -1818,3 +1817,226 @@
 	Soft Glow	Jemná záře
 	Accent with Reflection	Barva zvýraznění s odrazem
 	Warm Gradient with Outline	Teplý přechod s obrysem
+
+# Interface strings added on main since this catalog was first written.
+	As you type	Při psaní
+	Asian text font:	Písmo pro asijský text:
+	AutoSave writes your changes to the file a moment after you stop typing.	Automatické ukládání zapíše změny do souboru chvíli poté, co přestanete psát.
+	Centimeters	Centimetry
+	Check spelling as you type	Kontrolovat pravopis při psaní
+	Click to switch back to inserting	Kliknutím se vrátíte do režimu vkládání
+	Custom dictionary	Vlastní slovník
+	Formatting marks	Formátovací značky
+	Hidden text	Skrytý text
+	Ignore web and file addresses	Ignorovat webové adresy a cesty k souborům
+	Ignore words in capitals	Ignorovat slova psaná velkými písmeny
+	Ignore words with numbers	Ignorovat slova obsahující číslice
+	Inches	Palce
+	Formatting exceptions	Výjimky formátování
+	Initials:	Iniciály:
+	Interface	Rozhraní
+	Interface language	Jazyk rozhraní
+	Inside:	Uvnitř:
+	Latin text font:	Písmo pro latinkový text:
+	Mark grammar errors as you type	Označovat gramatické chyby při psaní
+	Measurement units:	Jednotky měření:
+	Millimeters	Milimetry
+	Mirror indents	Zrcadlové odsazení
+	New comments and tracked changes are recorded under this name and these initials.	Nové komentáře a sledované změny se zaznamenávají pod tímto jménem a iniciálami.
+	New word	Nové slovo
+	No words yet. Add to Dictionary on a misspelled word puts it here.	Zatím žádná slova. Sem se ukládají slova přidaná příkazem Přidat do slovníku u chybně napsaného slova.
+	Overtype	Přepisování
+	Overtype (typing replaces the characters after the caret)	Přepisování (psaný text nahrazuje znaky za kurzorem)
+	Page display	Zobrazení stránky
+	Paragraph marks	Značky odstavců
+	Personalize	Přizpůsobení
+	Picas	Pika
+	Points	Body
+	Print the page color	Tisknout barvu stránky
+	Printing	Tisk
+	Proofing language	Jazyk kontroly pravopisu
+	Recent documents to show:	Počet zobrazených posledních dokumentů:
+	Outside:	Vně:
+	Save documents	Ukládání dokumentů
+	Show the mini toolbar when text is selected	Při výběru textu zobrazit miniaturní panel nástrojů
+	Spaces	Mezery
+	Spelling	Pravopis
+	Spelling and grammar are checked in English (United States).	Pravopis a mluvnice se kontrolují v angličtině (Spojené státy).
+	Tab characters	Znaky tabulátoru
+	These marks show even when Show/Hide ¶ is off.	Tyto značky se zobrazují, i když je vypnuto Zobrazit/skrýt ¶.
+	Typing replaces selected text	Psaný text nahrazuje vybraný text
+	Update fields before printing	Před tiskem aktualizovat pole
+	Use the Insert key to switch overtype on and off	Přepínat režim přepisování klávesou Insert
+	Extend Selection by Units	Rozšířit výběr po jednotkách
+	Animation	Animace
+	Animate the caret (it glides and fades)	Animovat kurzor (plynule se přesouvá a prolíná)
+	On: the caret glides to its new place when you type or use the arrow keys, and its blink fades. Off: it jumps and blinks on and off.	Zapnuto: kurzor se při psaní nebo použití kláves se šipkami plynule přesune na nové místo a jeho blikání se prolíná. Vypnuto: kurzor přeskakuje a blikání se ostře zapíná a vypíná.
+	Word XML Document (*.xml)	Dokument Word XML (*.xml)
+	Deleted	Odstraněno
+	Resize Table by Dragging	Změnit velikost tabulky přetažením
+	Print Markup	Tisknout revize
+	Comments beside each page and tracked changes in PDFs, prints and images; a comment list at the end of web pages, Markdown and text.	Komentáře vedle každé stránky a sledované změny v souborech PDF, výtiscích a obrázcích; seznam komentářů na konci webových stránek, Markdownu a textu.
+	Add Font…	Přidat písmo…
+	Added Fonts	Přidaná písma
+	Remove Added Font	Odebrat přidané písmo
+	Recent Colors	Poslední barvy
+	More Colors…	Další barvy…
+	Standard	Standardní
+	Current	Aktuální
+	Colors:	Barvy:
+	Color model:	Barevný model:
+	Red:	Červená:
+	Green:	Zelená:
+	Blue:	Modrá:
+	Hue:	Odstín:
+	Sat:	Sytost:
+	Lum:	Jas:
+	Hex:	Hex:
+	Templates	Šablony
+	Templates and Add-ins	Šablony a doplňky
+	Attach Template	Připojit šablonu
+	Detach Template	Odpojit šablonu
+	Automatically Update Document Styles	Automaticky aktualizovat styly dokumentu
+	Update Styles from Template	Aktualizovat styly ze šablony
+	Organizer	Organizátor
+	Copy Styles	Kopírovat styly
+	Rename Style	Přejmenovat styl
+	Document template:	Šablona dokumentu:
+	Attach…	Připojit…
+	Automatically update document styles	Automaticky aktualizovat styly dokumentu
+	Organizer…	Organizátor…
+	Documents	Dokumenty
+	Word document	Dokument Word
+	All files	Všechny soubory
+	Recipient lists	Seznamy příjemců
+	The system file dialog isn't available, so WordCraft shows its own. To get the system dialog, install a file chooser portal (such as xdg-desktop-portal-gtk) or zenity.	Systémový dialog pro práci se soubory není k dispozici, proto WordCraft zobrazuje vlastní. Chcete-li používat systémový dialog, nainstalujte portál pro výběr souborů (například xdg-desktop-portal-gtk) nebo zenity.
+	Up one level	O úroveň výš
+	Home folder	Domovská složka
+	{name} wasn't found.	{name} nebyl nalezen.
+	{name} already exists. Choose Save again to replace it.	{name} již existuje. Dalším zvolením Uložit jej nahradíte.
+	This folder can't be read: {error}	Tuto složku nelze přečíst: {error}
+	Showing the first {count} items.	Zobrazuje se prvních {count} položek.
+	File name:	Název souboru:
+	Browse in WordCraft…	Procházet ve WordCraftu…
+	Open a file with WordCraft's own browser when the system file dialog doesn't appear.	Otevřít soubor pomocí vlastního prohlížeče souborů WordCraftu, když se systémový dialog pro práci se soubory nezobrazí.
+	Hide White Space	Skrýt prázdné místo
+	All pages	Všechny stránky
+	Current page	Aktuální stránka
+	Selected pages	Vybrané stránky
+	Custom range	Vlastní rozsah
+	All pages in the range	Všechny stránky v rozsahu
+	Odd pages only	Pouze liché stránky
+	Even pages only	Pouze sudé stránky
+	Copies	Kopie
+	Collate copies	Kompletovat kopie
+	Pages like 1-3, 5	Stránky, např. 1-3, 5
+	{count} of {total} pages will print	Vytiskne se {count} z {total} stránek
+	Save these pages as PDF…	Uložit tyto stránky jako PDF…
+	The printer, two-sided printing and pages per sheet are chosen in that dialog.	Tiskárna, oboustranný tisk a počet stránek na list se volí v tomto dialogu.
+	Previous Page	Předchozí stránka
+	Print to PDF	Tisk do PDF
+	Add Shape	Přidat tvar
+	Change Colors	Změnit barvy
+	Change Layout	Změnit rozložení
+	Create Graphic	Vytvořit obrázek
+	Edit Items	Upravit položky
+	Layouts	Rozložení
+	Reset Graphic	Obnovit obrázek
+	SmartArt Design	Návrh SmartArt
+	SmartArt Styles	Styly SmartArt
+	Text Pane	Podokno textu
+	List	Seznam
+	Process	Proces
+	Cycle	Cyklus
+	Hierarchy	Hierarchie
+	Relationship	Vztah
+	Pyramid	Pyramida
+	Basic List	Základní seznam
+	Basic Process	Základní proces
+	Basic Cycle	Základní cyklus
+	Basic Pyramid	Základní pyramida
+	Basic Radial	Základní paprskový
+	Basic Matrix	Základní matice
+	Basic Venn	Základní Vennův diagram
+	Shows items of equal weight as blocks in rows.	Zobrazí položky se stejnou vahou jako bloky v řádcích.
+	Shows steps in order, left to right, with arrows between them.	Zobrazí kroky v pořadí zleva doprava se šipkami mezi nimi.
+	Shows steps that repeat, around a circle.	Zobrazí opakující se kroky v kruhu.
+	Shows a tree: each item below the item it belongs to.	Zobrazí strom: každá položka je pod položkou, ke které patří.
+	Shows parts that build on each other, largest at the bottom.	Zobrazí části, které na sobě staví, s největší dole.
+	Shows items around a central idea: the first item is the centre.	Zobrazí položky kolem ústřední myšlenky: první položka je uprostřed.
+	Shows parts of a whole as quadrants.	Zobrazí části celku jako kvadranty.
+	Shows overlapping ideas as overlapping circles.	Zobrazí překrývající se myšlenky jako překrývající se kruhy.
+	Accent {n}	Zvýraznění {n}
+	Colorful	Barevné
+	Insert SmartArt	Vložit SmartArt
+	One line per item. Enter adds an item.	Jeden řádek na položku. Klávesa Enter přidá položku.
+	Add\nShape	Přidat\ntvar
+	Change\nColors	Změnit\nbarvy
+	Reset\nGraphic	Obnovit\nobrázek
+	Promote to Heading 1	Povýšit na Nadpis 1
+	Demote to Body Text	Snížit na základní text
+	Move Up	Přesunout nahoru
+	Move Down	Přesunout dolů
+	Collapse	Sbalit
+	Expand or Collapse Heading	Rozbalit nebo sbalit nadpis
+	Select Heading and Content	Vybrat nadpis a obsah
+	Show Level	Zobrazit úroveň
+	Show Level 1	Zobrazit úroveň 1
+	Show Level 2	Zobrazit úroveň 2
+	Show Level 3	Zobrazit úroveň 3
+	Show Level 4	Zobrazit úroveň 4
+	Show Level 5	Zobrazit úroveň 5
+	Show Level 6	Zobrazit úroveň 6
+	Show Level 7	Zobrazit úroveň 7
+	Show Level 8	Zobrazit úroveň 8
+	Show Level 9	Zobrazit úroveň 9
+	Show All Levels	Zobrazit všechny úrovně
+	All Levels	Všechny úrovně
+	Show First Line Only	Zobrazit jen první řádek
+	Show Text Formatting	Zobrazit formátování textu
+	Close Outline View	Zavřít zobrazení osnovy
+	Outline State	Stav osnovy
+	Outlining	Osnova
+	Outline Tools	Nástroje osnovy
+	Close Outline\nView	Zavřít\nzobrazení osnovy
+	Use wildcards	Používat zástupné znaky
+	Special	Speciální
+	Match prefix	Shoda předpony
+	Match suffix	Shoda přípony
+	Ignore punctuation characters	Ignorovat interpunkční znaky
+	Ignore white-space characters	Ignorovat prázdné znaky
+	Regular expressions	Regulární výrazy
+	Search Options	Možnosti hledání
+	Tab Character	Znak tabulátoru
+	Any Character	Libovolný znak
+	Any Digit	Libovolná číslice
+	Any Letter	Libovolné písmeno
+	Caret Character	Znak stříšky
+	Section Character	Znak paragrafu (§)
+	Paragraph Character	Znak odstavce
+	Graphic	Obrázek
+	Manual Line Break	Ruční zalomení řádku
+	Manual Page Break	Ruční konec stránky
+	Section Break	Konec oddílu
+	White Space	Prázdné místo
+	Clipboard Contents	Obsah schránky
+	Find What Text	Text pole Najít
+	Find What Expression	Výraz pole Najít
+	Character in Range	Znak v rozsahu
+	Beginning of Word	Začátek slova
+	End of Word	Konec slova
+	Expression	Výraz
+	Not	Negace
+	Num Occurrences	Počet výskytů
+	Previous 1 or More	Předchozí 1 nebo více
+	0 or More Characters	0 nebo více znaků
+	Move with Text	Přesouvat s textem
+	Fix Position on Page	Ukotvit pozici na stránce
+	Visual effects	Vizuální efekty
+	Animation effects:	Efekty animace:
+	On	Zapnuto
+	Off	Vypnuto
+	Smooth scrolling and zooming, and menus and buttons that fade in. Off shows every change at once.	Plynulé posouvání a přibližování a postupně se zobrazující nabídky a tlačítka. Při vypnutí se každá změna zobrazí okamžitě.
+	Your system has animation effects turned on.	Efekty animace jsou v systému zapnuté.
+	Your system has animation effects turned off.	Efekty animace jsou v systému vypnuté.
+	Your system doesn't report an animation setting, so animation effects stay on.	Systém neuvádí žádné nastavení animací, proto efekty animace zůstávají zapnuté.
